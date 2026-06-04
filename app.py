@@ -7,8 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1hN8g_yPfjBb8gThQPbvDRHpmuexCAXaF
 """
 
-# Cell 1: Install Hugging Face ecosystems and text utilities
-!pip install -q transformers datasets accelerate evaluate
+ #Install Hugging Face ecosystems and text utilities
 
 import pandas as pd
 
@@ -74,7 +73,7 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 
 from transformers import TrainingArguments, Trainer
 
-# Cell 5: Fine-tuning on GPU
+#  Fine-tuning on GPU
 training_args = TrainingArguments(
     output_dir="./results",
     learning_rate=2e-5,
@@ -82,7 +81,7 @@ training_args = TrainingArguments(
     per_device_eval_batch_size=16,
     num_train_epochs=3,
     weight_decay=0.01,
-    eval_strategy="epoch", # Fixed: evaluation_strategy is now eval_strategy
+    eval_strategy="epoch", 
     save_strategy="epoch",
     load_best_model_at_end=True,
     fp16=True # Speeds up training on the T4 GPU
@@ -115,9 +114,6 @@ eval_results = trainer.evaluate()
 
 print("Final Evaluation Results:")
 display(eval_results)
-
-# Install UI dependencies
-!pip install -q gradio
 
 # Launch an interactive dashboard inside your Colab notebook
 import gradio as gr
